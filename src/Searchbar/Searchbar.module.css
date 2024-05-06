@@ -1,0 +1,38 @@
+.form {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    align-items: center;
+    height: 35vh;
+  }
+  
+
+  
+  .search_bar {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .submit_btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .submit_btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .search_bar:hover,
+  .submit_btn:hover {
+    transform: scale(1.1);
+  }
+  

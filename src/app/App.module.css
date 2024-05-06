@@ -1,0 +1,21 @@
+.headerTxt{
+    background-color: #344955;
+    color: white;
+    text-shadow: 10px;
+    text-align: center;
+    margin-top: 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.App_header{
+    border-top: 0;
+    margin-top: 0;
+}
+
+.App{
+    background-image: url("./headphones.jpg");
+    min-height: 200vh;
+    background-position: -500px -700px;
+}
