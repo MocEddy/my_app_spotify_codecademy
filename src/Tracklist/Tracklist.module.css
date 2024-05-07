@@ -82,4 +82,26 @@
       background-color: #2C4E80;
       padding-bottom: 20px;
       opacity: 75%;
+      justify-content: center;
+    }
+
+    .save_to_spotify {
+      padding: 10px 20px;
+      background-color: purple;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      align-items: center;
+      display: block;
+      margin: 0 auto;
+      margin-top: 25px;
+    }
+    
+    .save_to_spotify:hover {
+      background-color: #8A2BE2;
+      transform: scale(1.1);
+      transition: 1s ease;
+      box-shadow: 0 4px 8px rgb(0, 0, 0);
     }

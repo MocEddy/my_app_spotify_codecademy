@@ -13,6 +13,10 @@ function Tracklist(props){
         //props function for adding
         setTrackName("");
     }
+    const handleClick = () =>{
+        console.log("clicked")
+    }
+
     return (
         <div className = {styles.track_div}>
             <form onSubmit={handleSubmit} className={styles.playlist_form}>
@@ -27,6 +31,7 @@ function Tracklist(props){
                     </div>
                 );
             })}
+            <button onClick={handleClick} className = {styles.save_to_spotify}>SAVE TO SPOTIFY</button>
         </div>
 
     );
