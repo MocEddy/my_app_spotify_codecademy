@@ -11,6 +11,7 @@ function Searchbar(props){
     const handleSubmit = (event) =>{
         event.preventDefault();
         props.onSubmit(song);
+        setSong("");
     }
     return(
         <div>

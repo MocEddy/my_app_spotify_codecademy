@@ -1,0 +1,59 @@
+.results_div {
+  background-color: rgba(255, 255, 255, 0.5); /* Light gray background color */
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px; /* Add some padding to the container */
+    opacity: 75%;
+  }
+  
+  .header_results {
+    margin-bottom: 20px; /* Add space below the header */
+    font-size: 24px; /* Increase font size for the header */
+    color: #333; /* Darken the text color */
+    text-align: center;
+  }
+  
+  .result_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    transition: transform 0.3s ease; /* Add a smooth transition effect */
+    background-color: white;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+  }
+  
+  .result_card:hover {
+    transform: translateY(-5px); /* Lift the card slightly on hover */
+  }
+  
+  .song_title {
+    font-size: 20px; /* Increase font size for the song title */
+    margin-bottom: 10px; /* Add space below the song title */
+  }
+  
+  .song_artist {
+    font-size: 16px; /* Decrease font size for the artist */
+    color: #666; /* Darken the text color */
+    margin-top: 5px; /* Add space above the artist */
+  }
+  
+  .add_btn {
+    background-color: #0056b3; /* Blue button color */
+    color: white; /* White text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px; /* Add padding to the button */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add_btn:hover {
+    background-color: #004080; /* Darker blue on hover */
+  }
+  
