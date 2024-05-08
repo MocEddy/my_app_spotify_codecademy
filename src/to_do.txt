@@ -1,0 +1,5 @@
+make so that when the save to spotify button is pressed the playlist gets eliminated from the visual
+add the uri property to each song from results and playlist + an array with all the uri's
+setup an access 'page' for the user to log in so that I can extract their access token
+fetch data from the spotify api
+save the playlist itself to the user's account
