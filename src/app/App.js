@@ -1,13 +1,15 @@
 // App.js
 import styles from './App.module.css';
 import Searchbar from '../Searchbar/Searchbar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchResults from "../SearchResults/SearchResults";
 import Tracklist from '../Tracklist/Tracklist';
 
 function App() {
   const [input, setInput] = useState("");
   const [tracks, setTracks] = useState([]);
+  const [songsToAdd, setSongsToAdd] = useState([]);
+  const [playlistName, setPlaylistName] = useState("");
 
   const handleSubmit = (song) => {
     setInput(song);
@@ -24,12 +26,21 @@ function App() {
       })
     })
   }
+  
+  const savedPlaylist = () =>{
+    setSongsToAdd(tracks);
+    setTracks([]);
+  }
+
+  const addPlaylistName = (name)=>{
+    setPlaylistName(name);
+  }
 
   const results = [
-    { title: "Belly Dancer", artist: "Drake", album: "Sanaa" },
-    { title: "Belly Dancer", artist: "Drake", album: "Havana" },
-    { title: "Belly Dancer", artist: "Drake", album: "Savona" },
-    { title: "Belly Dancer", artist: "Drake", album: "Savant" }
+    { title: "Belly Dancer", artist: "Drake", album: "Sanaa", uri:"11dFghVXANMlKmJXsNCbNl" },
+    { title: "Belly Dancer", artist: "Drake", album: "Havana", uri:"11dFghVXANMlKmJXsNC" },
+    { title: "Belly Dancer", artist: "Drake", album: "Savona", uri:"11dFghVXANMlKmJXsNCb" },
+    { title: "Belly Dancer", artist: "Drake", album: "Savant", uri:"11dFghVXANMlKmJXsNCbN" }
   ];
 
   return (
@@ -39,7 +50,7 @@ function App() {
       </header>
       <Searchbar onSubmit={handleSubmit}/>
       <SearchResults results={results} addSong={addSong}/>
-      <Tracklist tracks={tracks} removeSong={removeSong}/>
+      <Tracklist tracks={tracks} removeSong={removeSong} saved = {savedPlaylist} playlist={addPlaylistName} />
     </div>
   );
 }

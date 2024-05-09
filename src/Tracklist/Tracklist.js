@@ -10,11 +10,9 @@ function Tracklist(props){
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        //props function for adding
+        props.playlist(trackName);
+        props.saved();
         setTrackName("");
-    }
-    const handleClick = () =>{
-        console.log("clicked")
     }
 
     return (
@@ -31,7 +29,7 @@ function Tracklist(props){
                     </div>
                 );
             })}
-            <button onClick={handleClick} className = {styles.save_to_spotify}>SAVE TO SPOTIFY</button>
+            <button onClick={handleSubmit} className = {styles.save_to_spotify}>SAVE TO SPOTIFY</button>
         </div>
 
     );
