@@ -1,11 +1,23 @@
 // App.js
 import styles from './App.module.css';
 import Searchbar from '../Searchbar/Searchbar';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SearchResults from "../SearchResults/SearchResults";
 import Tracklist from '../Tracklist/Tracklist';
+import {requestAuthorization, onReturn} from "../api_stuff/api";
 
 function App() {
+  localStorage.setItem("reload", "1")
+
+  useEffect(() => {
+    if (localStorage.getItem("reload") === "1") {
+      requestAuthorization();
+      localStorage.setItem("reload", "0")
+      onReturn();
+    }
+  }, []);
+  
+
   const [input, setInput] = useState("");
   const [tracks, setTracks] = useState([]);
   const [songsToAdd, setSongsToAdd] = useState([]);

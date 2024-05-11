@@ -1,3 +1,2 @@
-setup an access 'page' for the user to log in so that I can extract their access token
 fetch data from the spotify api
 save the playlist itself to the user's account
