@@ -1,27 +1,24 @@
 // App.js
 import styles from './App.module.css';
 import Searchbar from '../Searchbar/Searchbar';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import SearchResults from "../SearchResults/SearchResults";
 import Tracklist from '../Tracklist/Tracklist';
-import {requestAuthorization, onReturn} from "../api_stuff/api";
+import {requestAuthorization, onReturn, fetchSearchQuery} from "../api_stuff/api";
 
 function App() {
-  localStorage.setItem("reload", "1")
-
-  useEffect(() => {
-    if (localStorage.getItem("reload") === "1") {
-      requestAuthorization();
-      localStorage.setItem("reload", "0")
-      onReturn();
-    }
-  }, []);
+  
   
 
   const [input, setInput] = useState("");
   const [tracks, setTracks] = useState([]);
   const [songsToAdd, setSongsToAdd] = useState([]);
   const [playlistName, setPlaylistName] = useState("");
+  const [results, setResults] = useState([]);
+  useEffect(() => {
+      requestAuthorization();
+      onReturn();
+  }, []);
 
   const handleSubmit = (song) => {
     setInput(song);
@@ -48,12 +45,6 @@ function App() {
     setPlaylistName(name);
   }
 
-  const results = [
-    { title: "Belly Dancer", artist: "Drake", album: "Sanaa", uri:"11dFghVXANMlKmJXsNCbNl" },
-    { title: "Belly Dancer", artist: "Drake", album: "Havana", uri:"11dFghVXANMlKmJXsNC" },
-    { title: "Belly Dancer", artist: "Drake", album: "Savona", uri:"11dFghVXANMlKmJXsNCb" },
-    { title: "Belly Dancer", artist: "Drake", album: "Savant", uri:"11dFghVXANMlKmJXsNCbN" }
-  ];
 
   return (
     <div className={styles.App}>
@@ -61,8 +52,8 @@ function App() {
         <h1 className={styles.headerTxt}>Jamming</h1>
       </header>
       <Searchbar onSubmit={handleSubmit}/>
-      <SearchResults results={results} addSong={addSong}/>
-      <Tracklist tracks={tracks} removeSong={removeSong} saved = {savedPlaylist} playlist={addPlaylistName} />
+      <SearchResults results={results} addSong={addSong} input={input} query={fetchSearchQuery}/>
+      <Tracklist tracks={tracks} removeSong={removeSong} saved = {savedPlaylist} playlist={addPlaylistName}/>
     </div>
   );
 }

@@ -92,35 +92,31 @@ function refreshAccessToken() {
     callAuthorizationApi(body);
 }
 
-function fetchSearchQuery(data) {
+export function fetchSearchQuery(data) {
     let url = searchQuery;
     url += "?q=" + encodeURIComponent(data);
     url += "&type=track";
     url += "&limit=" + 10;
-    url += "&offset=" + 0;
-    fetch(url, {
+    url += "&offset=" + 1;
+    return fetch(url, {
         method: 'GET',
         headers:{
             'Authorization': "Bearer " + localStorage.getItem("access_token")
         }
     })
     .then(response => response.json())
-    .then(res => {return searchQuery(res)})
+    .then(res => {return handleSearchQuery(res)}) // Call handleSearchQuery to process the response
     .catch(error => {
         refreshAccessToken();
-        fetchSearchQuery(data);
+        return fetchSearchQuery(data); // Return the result of recursive call
     });
 }
 
 function handleSearchQuery(response){
-    const tracks=[];
-    response.tracks.items.map(item =>{
-        const it ={
-            name: item.name,
-            album: item.album,
-            artist: item.artists[0]
-        };
-        tracks.push(it);
-    });
-    return tracks;
+    return response.tracks.items.map(item => ({
+        title: item.name,
+        artist: item.artists[0].name,
+        album: item.album.name,
+        uri: item.uri
+      }));
 }

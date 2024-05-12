@@ -1,13 +1,16 @@
 import { useState } from "react";
 import styles from "./Searchbar.module.css";
-
+import { fetchSearchQuery } from "../api_stuff/api";
 
 function Searchbar(props){
     const [song, setSong] = useState("");
 
-    const handleChange = (e) =>{
-        setSong(e.target.value)
-    }
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setSong(value);
+      };
+
+
     const handleSubmit = (event) =>{
         event.preventDefault();
         props.onSubmit(song);
