@@ -66,8 +66,8 @@ async function fetchAccessToken(code) {
     body += "&redirect_uri=" + encodeURIComponent(redirect_uri);
     body += "&client_id=" + client_id;
     body += "&client_secret=" + client_secret;
-    await callAuthorizationApi(body);
-    await fetchUserInfo();
+    callAuthorizationApi(body);
+    fetchUserInfo();
 }
 
 function handleRedirect() {
@@ -151,7 +151,7 @@ function handleSearchQuery(response){
 }
 
 
-export function createPlaylist(name) {
+export function createPlaylist(name, data) {
     const createPlaylistUrl = `https://api.spotify.com/v1/users/${localStorage.getItem("user_id")}/playlists`;
     fetch(createPlaylistUrl, {
         method: 'POST',
@@ -167,9 +167,10 @@ export function createPlaylist(name) {
         }
         return response.json();
     })
-    .then(data => {
+    .then( async (data) => {
         console.log('Playlist created:', data);
         localStorage.setItem("playlist_id", data.id);
+        await addToPlaylist(data);
     })
     .catch(error => {
         console.error('Error creating playlist:', error);

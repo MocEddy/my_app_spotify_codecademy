@@ -46,12 +46,11 @@ function App() {
     setPlaylistName(name);
   }
 
-   const createAddPlaylist = async () =>{
+   const createAddPlaylist = () =>{
     const uris = tracks.map((element) =>{
       return element.uri;
     })
-    createPlaylist(playlistName);
-    await addToPlaylist(uris);
+    createPlaylist(playlistName, uris);
   }
 
   return (
