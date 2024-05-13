@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./Tracklist.module.css";
 
+
 function Tracklist(props){
     const [trackName, setTrackName] = useState("");
 
@@ -12,6 +13,7 @@ function Tracklist(props){
         event.preventDefault();
         props.playlist(trackName);
         props.saved();
+        props.final();
         setTrackName("");
     }
 

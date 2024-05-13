@@ -5,6 +5,7 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import SearchResults from "../SearchResults/SearchResults";
 import Tracklist from '../Tracklist/Tracklist';
 import {requestAuthorization, onReturn, fetchSearchQuery} from "../api_stuff/api";
+import { createPlaylist, addToPlaylist } from "../api_stuff/api";
 
 function App() {
   
@@ -45,6 +46,13 @@ function App() {
     setPlaylistName(name);
   }
 
+   const createAddPlaylist = async () =>{
+    const uris = tracks.map((element) =>{
+      return element.uri;
+    })
+    createPlaylist(playlistName);
+    await addToPlaylist(uris);
+  }
 
   return (
     <div className={styles.App}>
@@ -53,7 +61,7 @@ function App() {
       </header>
       <Searchbar onSubmit={handleSubmit}/>
       <SearchResults results={results} addSong={addSong} input={input} query={fetchSearchQuery}/>
-      <Tracklist tracks={tracks} removeSong={removeSong} saved = {savedPlaylist} playlist={addPlaylistName}/>
+      <Tracklist tracks={tracks} removeSong={removeSong} saved = {savedPlaylist} playlist={addPlaylistName} final ={createAddPlaylist}/>
     </div>
   );
 }
